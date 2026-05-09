@@ -5,6 +5,7 @@
   gather_facts: true
 
   tasks:
+# Apt and prerequisites
     - name: Install prerequisites.
       apt:
         name:
@@ -17,6 +18,7 @@
     - name: Install all apt packages.
       apt:
         update_cache: true
+        state: present
         name:
           - vim
           - btop
@@ -25,10 +27,10 @@
           - gcc
           - figlet
           - lolcat
-#         - fastfetch
-#         - mpd
-        state: present
+        # - fastfetch
+        # - mpd
 
+# Nushell
     - name: Check whether nushell is installed.
       ansible.builtin.stat:
         path: /usr/bin/nu
@@ -59,7 +61,12 @@
             update_cache: true
             name: nushell
             state: present
+    - name: Set Nushell as a default shell for kubamike.
+      user:
+        name: kubamike
+        shell: /usr/bin/nu
 
+# Musikcube
     - name: Check if musikcube exists.
       ansible.builtin.stat:
         path: /usr/bin/musikcube
@@ -75,6 +82,7 @@
           | first
         }}"
 
+# Superfile
     - name: Check if superfile exists.
       ansible.builtin.stat:
         path: /usr/local/bin/spf
@@ -83,6 +91,7 @@
       when: not superfile_bin.stat.exists
       ansible.builtin.shell: curl -sLo- https://superfile.dev/install.sh | bash
 
+# Zellij
     - name: Check if zellij exists.
       ansible.builtin.stat:
         path: /usr/local/bin/zellij
@@ -101,4 +110,4 @@
             src: /tmp/zellij.tar.gz
             dest: /usr/local/bin/
             remote_src: yes
-        # when: zellij_download.changed
+
