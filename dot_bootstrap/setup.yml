@@ -19,8 +19,13 @@
         update_cache: true
         name:
           - vim
-#         - fastfetch
           - btop
+          - pulsemixer
+          - python3
+          - gcc
+          - figlet
+          - lolcat
+#         - fastfetch
 #         - mpd
         state: present
 
