@@ -1,0 +1,239 @@
+14/09/25 (11:23:24) | WARNING: No theme named "catppuccin" found!
+14/09/25 (12:49:06) | ERROR: Data collection thread failed with exception: [Errno 107] Transport endpoint is not connected
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/psutil/_pslinux.py", line 1565, in boot_time
+    for line in f:
+ConnectionAbortedError: [Errno 103] Software caused connection abort
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/bin/bpytop", line 2958, in _runner
+    collector._collect()
+  File "/usr/bin/bpytop", line 3093, in _collect
+    cls.uptime = str(timedelta(seconds=round(time()-psutil.boot_time(),0)))[:-3].replace(" days,", "d").replace(" day,", "d")
+                                                    ^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/psutil/__init__.py", line 2307, in boot_time
+    return _psplatform.boot_time()
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/psutil/_pslinux.py", line 1564, in boot_time
+    with open_binary(path) as f:
+OSError: [Errno 107] Transport endpoint is not connected
+14/09/25 (12:49:06) | WARNING: Exiting with errorcode (1). Runtime 1:24:01 
+
+14/09/25 (15:05:04) | ERROR: Data collection thread failed with exception: invalid attr name 'io_counters'
+Traceback (most recent call last):
+  File "/usr/bin/bpytop", line 2958, in _runner
+    collector._collect()
+  File "/usr/bin/bpytop", line 3795, in _collect
+    cls.details = det.as_dict(attrs=attrs, ad_value="")
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/psutil/__init__.py", line 515, in as_dict
+    raise ValueError("invalid attr name%s %s" % (
+ValueError: invalid attr name 'io_counters'
+14/09/25 (15:05:05) | WARNING: Exiting with errorcode (1). Runtime 1:57:23 
+
+14/09/25 (15:05:16) | ERROR: Data collection thread failed with exception: invalid attr name 'io_counters'
+Traceback (most recent call last):
+  File "/usr/bin/bpytop", line 2958, in _runner
+    collector._collect()
+  File "/usr/bin/bpytop", line 3795, in _collect
+    cls.details = det.as_dict(attrs=attrs, ad_value="")
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/psutil/__init__.py", line 515, in as_dict
+    raise ValueError("invalid attr name%s %s" % (
+ValueError: invalid attr name 'io_counters'
+14/09/25 (15:05:16) | WARNING: Exiting with errorcode (1). Runtime 0:00:08 
+
+14/09/25 (15:05:23) | ERROR: Data collection thread failed with exception: invalid attr name 'io_counters'
+Traceback (most recent call last):
+  File "/usr/bin/bpytop", line 2958, in _runner
+    collector._collect()
+  File "/usr/bin/bpytop", line 3795, in _collect
+    cls.details = det.as_dict(attrs=attrs, ad_value="")
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/psutil/__init__.py", line 515, in as_dict
+    raise ValueError("invalid attr name%s %s" % (
+ValueError: invalid attr name 'io_counters'
+14/09/25 (15:05:23) | WARNING: Exiting with errorcode (1). Runtime 0:00:04 
+
+16/09/25 (16:30:55) | ERROR: division by zero
+Traceback (most recent call last):
+  File "/usr/bin/bpytop", line 5592, in main
+    Box.calc_sizes()
+  File "/usr/bin/bpytop", line 1705, in calc_sizes
+    sub._calc_size() # type: ignore
+    ^^^^^^^^^^^^^^^^
+  File "/usr/bin/bpytop", line 1842, in _calc_size
+    cls.box_height = ceil(THREADS / cls.box_columns) + 4
+                          ~~~~~~~~^~~~~~~~~~~~~~~~~
+ZeroDivisionError: division by zero
+16/09/25 (16:30:55) | WARNING: Exiting with errorcode (1). Runtime 0:00:00 
+
+16/09/25 (16:31:25) | ERROR: division by zero
+Traceback (most recent call last):
+  File "/usr/bin/bpytop", line 5592, in main
+    Box.calc_sizes()
+  File "/usr/bin/bpytop", line 1705, in calc_sizes
+    sub._calc_size() # type: ignore
+    ^^^^^^^^^^^^^^^^
+  File "/usr/bin/bpytop", line 1842, in _calc_size
+    cls.box_height = ceil(THREADS / cls.box_columns) + 4
+                          ~~~~~~~~^~~~~~~~~~~~~~~~~
+ZeroDivisionError: division by zero
+16/09/25 (16:31:25) | WARNING: Exiting with errorcode (1). Runtime 0:00:00 
+
+24/09/25 (20:13:00) | ERROR: Data collection thread failed with exception: [Errno 107] Transport endpoint is not connected: '/proc/meminfo'
+Traceback (most recent call last):
+  File "/usr/bin/bpytop", line 2958, in _runner
+    collector._collect()
+  File "/usr/bin/bpytop", line 3290, in _collect
+    mem = psutil.virtual_memory()
+          ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/psutil/__init__.py", line 1968, in virtual_memory
+    ret = _psplatform.virtual_memory()
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/psutil/_pslinux.py", line 415, in virtual_memory
+    with open_binary('%s/meminfo' % get_procfs_path()) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/psutil/_common.py", line 728, in open_binary
+    return open(fname, "rb", buffering=FILE_READ_BUFFER_SIZE)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 107] Transport endpoint is not connected: '/proc/meminfo'
+24/09/25 (20:13:02) | WARNING: Exiting with errorcode (1). Runtime 8 days, 3:41:31 
+
+26/09/25 (12:35:22) | ERROR: division by zero
+Traceback (most recent call last):
+  File "/usr/bin/bpytop", line 5592, in main
+    Box.calc_sizes()
+  File "/usr/bin/bpytop", line 1705, in calc_sizes
+    sub._calc_size() # type: ignore
+    ^^^^^^^^^^^^^^^^
+  File "/usr/bin/bpytop", line 1842, in _calc_size
+    cls.box_height = ceil(THREADS / cls.box_columns) + 4
+                          ~~~~~~~~^~~~~~~~~~~~~~~~~
+ZeroDivisionError: division by zero
+26/09/25 (12:35:22) | WARNING: Exiting with errorcode (1). Runtime 0:00:00 
+
+26/09/25 (12:35:25) | ERROR: division by zero
+Traceback (most recent call last):
+  File "/usr/bin/bpytop", line 5592, in main
+    Box.calc_sizes()
+  File "/usr/bin/bpytop", line 1705, in calc_sizes
+    sub._calc_size() # type: ignore
+    ^^^^^^^^^^^^^^^^
+  File "/usr/bin/bpytop", line 1842, in _calc_size
+    cls.box_height = ceil(THREADS / cls.box_columns) + 4
+                          ~~~~~~~~^~~~~~~~~~~~~~~~~
+ZeroDivisionError: division by zero
+26/09/25 (12:35:25) | WARNING: Exiting with errorcode (1). Runtime 0:00:00 
+
+01/10/25 (18:31:08) | ERROR: Data collection thread failed with exception: [Errno 107] Transport endpoint is not connected: '/proc/meminfo'
+Traceback (most recent call last):
+  File "/usr/bin/bpytop", line 2958, in _runner
+    collector._collect()
+  File "/usr/bin/bpytop", line 3290, in _collect
+    mem = psutil.virtual_memory()
+          ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/psutil/__init__.py", line 1968, in virtual_memory
+    ret = _psplatform.virtual_memory()
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/psutil/_pslinux.py", line 415, in virtual_memory
+    with open_binary('%s/meminfo' % get_procfs_path()) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/psutil/_common.py", line 728, in open_binary
+    return open(fname, "rb", buffering=FILE_READ_BUFFER_SIZE)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 107] Transport endpoint is not connected: '/proc/meminfo'
+01/10/25 (18:31:10) | WARNING: Exiting with errorcode (1). Runtime 8:02:30 
+
+07/10/25 (14:29:20) | ERROR: division by zero
+Traceback (most recent call last):
+  File "/usr/bin/bpytop", line 5592, in main
+    Box.calc_sizes()
+  File "/usr/bin/bpytop", line 1705, in calc_sizes
+    sub._calc_size() # type: ignore
+    ^^^^^^^^^^^^^^^^
+  File "/usr/bin/bpytop", line 1842, in _calc_size
+    cls.box_height = ceil(THREADS / cls.box_columns) + 4
+                          ~~~~~~~~^~~~~~~~~~~~~~~~~
+ZeroDivisionError: division by zero
+07/10/25 (14:29:20) | WARNING: Exiting with errorcode (1). Runtime 0:00:00 
+
+08/10/25 (19:55:12) | ERROR: Data collection thread failed with exception: [Errno 107] Transport endpoint is not connected: '/proc/meminfo'
+Traceback (most recent call last):
+  File "/usr/bin/bpytop", line 2958, in _runner
+    collector._collect()
+  File "/usr/bin/bpytop", line 3290, in _collect
+    mem = psutil.virtual_memory()
+          ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/psutil/__init__.py", line 1968, in virtual_memory
+    ret = _psplatform.virtual_memory()
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/psutil/_pslinux.py", line 415, in virtual_memory
+    with open_binary('%s/meminfo' % get_procfs_path()) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/psutil/_common.py", line 728, in open_binary
+    return open(fname, "rb", buffering=FILE_READ_BUFFER_SIZE)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 107] Transport endpoint is not connected: '/proc/meminfo'
+08/10/25 (19:55:12) | WARNING: Exiting with errorcode (1). Runtime 1 day, 5:25:45 
+
+23/10/25 (12:19:39) | ERROR: Data collection thread failed with exception: [Errno 107] Transport endpoint is not connected: '/proc/stat'
+Traceback (most recent call last):
+  File "/usr/bin/bpytop", line 2958, in _runner
+    collector._collect()
+  File "/usr/bin/bpytop", line 3093, in _collect
+    cls.uptime = str(timedelta(seconds=round(time()-psutil.boot_time(),0)))[:-3].replace(" days,", "d").replace(" day,", "d")
+                                                    ^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/psutil/__init__.py", line 2307, in boot_time
+    return _psplatform.boot_time()
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/psutil/_pslinux.py", line 1564, in boot_time
+    with open_binary(path) as f:
+         ^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/psutil/_common.py", line 728, in open_binary
+    return open(fname, "rb", buffering=FILE_READ_BUFFER_SIZE)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 107] Transport endpoint is not connected: '/proc/stat'
+23/10/25 (12:19:39) | WARNING: Exiting with errorcode (1). Runtime 3:45:06 
+
+28/10/25 (12:47:12) | ERROR: Input thread failed with exception: (5, 'Input/output error')
+Traceback (most recent call last):
+  File "/usr/bin/bpytop", line 954, in _get_key
+    with Raw(sys.stdin):
+  File "/usr/bin/bpytop", line 798, in __exit__
+    termios.tcsetattr(self.stream, termios.TCSANOW, self.original_stty)
+termios.error: (5, 'Input/output error')
+28/10/25 (12:47:12) | ERROR: Data collection thread failed with exception: [Errno 5] Input/output error
+Traceback (most recent call last):
+  File "/usr/bin/bpytop", line 2945, in _runner
+    if CONFIG.draw_clock and CONFIG.update_ms != 1000: Box.draw_clock()
+                                                       ^^^^^^^^^^^^^^^^
+  File "/usr/bin/bpytop", line 1746, in draw_clock
+    Draw.buffer("clock", out, z=1, now=now, once=not force, only_save=Menu.active)
+  File "/usr/bin/bpytop", line 1066, in buffer
+    cls.out(name)
+  File "/usr/bin/bpytop", line 1080, in out
+    cls.now(out)
+  File "/usr/bin/bpytop", line 1039, in now
+    print(*args, sep="", end="", flush=True)
+OSError: [Errno 5] Input/output error
+29/10/25 (06:50:03) | ERROR: Input thread failed with exception: [Errno 5] Input/output error
+Traceback (most recent call last):
+  File "/usr/bin/bpytop", line 957, in _get_key
+    input_key += sys.stdin.read(1)						#* Read 1 key safely with blocking on
+                 ^^^^^^^^^^^^^^^^^
+OSError: [Errno 5] Input/output error
+29/10/25 (06:50:03) | ERROR: Input thread failed with exception: [Errno 5] Input/output error
+Traceback (most recent call last):
+  File "/usr/bin/bpytop", line 957, in _get_key
+    input_key += sys.stdin.read(1)						#* Read 1 key safely with blocking on
+                 ^^^^^^^^^^^^^^^^^
+OSError: [Errno 5] Input/output error
+30/10/25 (22:18:58) | ERROR: Input thread failed with exception: [Errno 5] Input/output error
+Traceback (most recent call last):
+  File "/usr/bin/bpytop", line 957, in _get_key
+    input_key += sys.stdin.read(1)						#* Read 1 key safely with blocking on
+                 ^^^^^^^^^^^^^^^^^
+OSError: [Errno 5] Input/output error

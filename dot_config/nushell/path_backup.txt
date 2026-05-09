@@ -1,0 +1,13 @@
+/usr/local/sbin
+/usr/local/bin
+/usr/local/games
+/usr/sbin
+/usr/bin
+/usr/games
+/sbin
+/bin
+/opt/nvim-linux-x86_64/bin
+/home/kubamike/n/bin
+/home/kubamike/.cargo/bin
+/home/kubamike/.opencode/bin
+/home/kubamike/.local/bin

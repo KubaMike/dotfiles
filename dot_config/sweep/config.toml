@@ -1,0 +1,6 @@
+safe_mode = true
+
+[paths]
+working = "/home/kubamike/projects"
+archive = "/home/kubamike/sdcard/projects"
+
