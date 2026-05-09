@@ -1,0 +1,62 @@
+- name: Setup system.
+  hosts: localhost
+  become: true
+  connection: local
+  gather_facts: true
+
+  tasks:
+    - name: Install apt packages.
+      apt:
+        name:
+          - vim
+          - neofetch
+          - btop
+#         - mpd
+
+    - name: Check if musikcube exists.
+      stat: 
+        path: /usr/bin/musikcube
+      register: musikcube_bin
+    - name: Install musikcube.
+      apt:
+        deb: "{{
+          (lookup('url' , 'https://api.github.com/repos/clangen/musikcube/releases/latest') | from_json).assets
+          | selectattr('name', 'search', 'x86_64.deb')
+          | map(attribute='browser_download_url')
+          | first
+        }}"
+      when: not musikcube_bin.stat.exists
+
+    - name: Check if superfile exists.
+      stat:
+        path: /usr/local/bin/spf
+      register: superfile_bin
+    - name: Install superfile.
+      shell: curl -sLo- https://superfile.dev/install.sh | bash
+      when: not superfile_bin.stat.exists
+        
+
+    - name: Check if zellij exists.
+      stat:
+        path: /usr/local/bin/zellij
+      register: zellij_bin
+    - name: Get zellij tarball to /tmp.
+      get_url:
+        url: https://github.com/zellij-org/zellij/releases/latest/download/zellij-x86_64-unknown-linux-musl.tar.gz
+        dest: /tmp/zellij.tar.gz
+        mode: '0644'
+      register: zellij_download
+    - name: Install zellij to /usr/local/bin/zellij.
+      unarchive:
+        src: /tmp/zellij.tar.gz
+        dest: /usr/local/bin/
+        remote_src: yes
+      when: zellij_download.changed
+
+#   - name: Install zellij.
+#     ansible.builtin.unarchive:
+#       src: https://github.com/zellij-org/zellij/releases/latest/download/zellij-x86_64-unknown-linux-musl.tar.gz
+#       dest: /usr/local/bin
+#       remote_src: yes
+#       extra_opts: [--strip-components=1]
+#     when: not zellij_bin.stat.exists
