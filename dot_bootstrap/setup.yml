@@ -5,13 +5,41 @@
   gather_facts: true
 
   tasks:
-    - name: Install apt packages.
+    - name: Check whether nushell is installed.
+      stat: 
+        path: /usr/bin/nu
+      register: nushell_bin
+
+    - name: Add Nushell GPG key.
+      become: true
+      ansible.builtin.get_url:
+        url: https://apt.fury.io/nushell/gpg.key
+        dest: /etc/apt/keyrings/fury-nushell.gpg.key
+        mode: '0644'
+      register: nushell_repo_key
+
+    - name: Dearmor the nushell GPG key.
+      become: true
+      ansible.builtin.command:
+        cmd: gpg --dearmor -o /etc/apt/keyrings/fury-nushell.gpg /etc/apt/keyrings/fury-nushell.gpg.key
+        creates: /etc/apt/keyrings/fury-nushell.gpg
+      when: nushell_repo_key.changed # Hashes the downloaded key only if downloaded.
+
+    - name: Add Nushell repo.
+      become: true
+      ansible.builtin.apt_repository:
+        repo: "deb [signed-by=/etc/apt/keyrings/fury-nushell.gpg] https://apt.fury.io/nushell/ /"
+        filename: fury-nushell
+        state: present
+
+    - name: Install all apt packages.
       apt:
         name:
           - vim
-          - neofetch
+          - fastfetch
           - btop
 #         - mpd
+        update_cache: true
 
     - name: Check if musikcube exists.
       stat: 
