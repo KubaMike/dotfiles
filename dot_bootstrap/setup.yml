@@ -5,6 +5,15 @@
   gather_facts: true
 
   tasks:
+    - name: Install prerequisites.
+      apt:
+        name:
+          - gnupg
+          - ca-certificates
+          - curl
+          - wget
+        state: present
+
     - name: Install all apt packages.
       apt:
         update_cache: true
