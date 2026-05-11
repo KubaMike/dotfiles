@@ -31,6 +31,30 @@
           - lolcat
         # - fastfetch
         # - mpd
+        
+# Github CLI (gh)
+    - name: Check if GitHub CLI exists.
+      stat:
+        path: /usr/bin/gh
+      register: gh_bin
+    - name: Install GitHub CLI.
+      when: not gh_bin.stat.exists
+      block:
+        - name: Add GitHub CLI GPG key.
+          get_url:
+            url: https://cli.github.com/packages/githubcli-archive-keyring.gpg
+            dest: /etc/apt/keyrings/githubcli-archive-keyring.gpg
+            mode: '0644'
+        - name: Add GitHub CLI repo.
+          apt_repository:
+            repo: "deb [arch={{ ansible_architecture | replace('x86_64', 'amd64') | replace('aarch64', 'arm64') }} signed-by=/etc/apt/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main"
+            filename: github-cli
+            state: present
+        - name: Install gh.
+          apt:
+            update_cache: true
+            name: gh
+            state: present
 
 # Nushell
     - name: Check whether nushell is installed.
