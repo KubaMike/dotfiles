@@ -9,6 +9,7 @@
     - name: Install prerequisites.
       apt:
         name:
+          - make
           - gnupg
           - ca-certificates
           - curl
@@ -20,6 +21,7 @@
         update_cache: true
         state: present
         name:
+          - git
           - vim
           - btop
           - pulsemixer
@@ -109,5 +111,27 @@
           ansible.builtin.unarchive:
             src: /tmp/zellij.tar.gz
             dest: /usr/local/bin/
+            remote_src: yes
+# Neovim
+    - name: Check if Neovim exists.
+      stat:
+        path: /opt/nvim-linux-x86_64/bin/nvim
+      register: neovim_bin
+    - name: Install Neovim.
+      when: not neovim_bin.stat.exists
+      block:
+        - name: Download Neovim binary.
+          get_url: 
+            url: https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz
+            path: /tmp/nvim-linux-x86_64.tar.gz
+            mode: '644'
+        - name: Remove existing Neovim instalation.
+          file:
+            path: /opt/nvim-linux-x86_64
+            state: absent
+        - name: Extract Neovim to /opt
+          unarchive:
+            src: /tmp/nvim-linux-x86_64.tar.gz
+            dest: /opt
             remote_src: yes
 
