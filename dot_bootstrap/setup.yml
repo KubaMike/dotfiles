@@ -38,6 +38,14 @@
         - name: Download and extract Homebrew.
           shell: |
             curl -fsSL https://github.com/Homebrew/brew/tarball/master | tar xz --strip 1 -C /home/linuxbrew/.linuxbrew
+
+    - name: Install all homebrew packages.
+      become: false
+      homebrew:
+        name:
+          - node
+          - slides
+
 # Apt
     - name: Install all apt packages.
       apt:
@@ -176,7 +184,7 @@
           file:
             path: /opt/nvim-linux-x86_64
             state: absent
-        - name: Extract Neovim to /opt
+        - name: Extract Neovim to /opt.
           unarchive:
             src: /tmp/nvim-linux-x86_64.tar.gz
             dest: /opt
