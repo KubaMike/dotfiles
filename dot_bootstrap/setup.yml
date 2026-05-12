@@ -5,7 +5,7 @@
   gather_facts: true
 
   tasks:
-# Apt and prerequisites
+# Prerequisites
     - name: Install prerequisites.
       apt:
         name:
@@ -15,6 +15,15 @@
           - curl
           - wget
         state: present
+    - name: Install homebrew.
+      block:
+        - name: Check wether homebrew exists.
+          stat:
+            path: /home/linuxbrew/.linuxbrew/bin/brew
+          register: brew_bin
+        - name: Install homebrew.
+          when: not brew_bin.stat.exists
+          shell: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
     - name: Install all apt packages.
       apt:

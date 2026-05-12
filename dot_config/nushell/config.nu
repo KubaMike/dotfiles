@@ -12,7 +12,7 @@ $env.config = {
   auto_cd_implicit: true
 }
 
-$env.PATH = ( $env.PATH | append /opt/nvim-linux-x86_64/bin | append /home/kubamike/n/bin | append /home/kubamike/.cargo/bin | append /home/kubamike/.opencode/bin | append /home/kubamike/.local/bin )
+$env.PATH = ( $env.PATH | append /opt/nvim-linux-x86_64/bin | append /home/kubamike/n/bin | append /home/kubamike/.cargo/bin | append /home/kubamike/.opencode/bin | append /home/kubamike/.local/bin | append /home/linuxbrew/.linuxbrew/bin)
 
 alias la = ls -a
 alias ll = ls -l
