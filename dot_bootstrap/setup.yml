@@ -14,17 +14,31 @@
           - ca-certificates
           - curl
           - wget
+          - tar
+          - gcc # For c++ and homebrew
+          - build-essential
         state: present
-    - name: Install homebrew.
-      block:
-        - name: Check wether homebrew exists.
-          stat:
-            path: /home/linuxbrew/.linuxbrew/bin/brew
-          register: brew_bin
-        - name: Install homebrew.
-          when: not brew_bin.stat.exists
-          shell: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
+# Homebrew
+    - name: Check if Homebrew is installed
+      ansible.builtin.stat:
+        path: "/home/linuxbrew/.linuxbrew/bin/brew"
+      register: brew_bin
+    - name: Install homebrew.
+      when: not brew_bin.stat.exists
+      block:
+        - name: Create Homebrew directory
+          become: true
+          file:
+            path: "/home/linuxbrew/.linuxbrew"
+            state: directory
+            owner: "{{ ansible_env.USER }}"
+            group: "{{ ansible_env.USER }}"
+            mode: '0755'
+        - name: Download and extract Homebrew.
+          shell: |
+            curl -fsSL https://github.com/Homebrew/brew/tarball/master | tar xz --strip 1 -C /home/linuxbrew/.linuxbrew
+# Apt
     - name: Install all apt packages.
       apt:
         update_cache: true
