@@ -60,6 +60,7 @@
           - gcc
           - figlet
           - lolcat
+          - libgraph-easy-perl # To use with slides.md for graphing.
         # - fastfetch
         # - mpd
         
